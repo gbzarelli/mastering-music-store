@@ -1,7 +1,7 @@
 # Mastering Music Store
 
-O projeto 'Mastering Music Store' será desenvolvido para validar o meu conhecimento das várias tecnologias 
-atualmente utilizadas no mercado de trabalho.
+O projeto 'Mastering Music Store' será desenvolvido para validar meus conhecimento das várias tecnologias 
+utilizadas atualmente no mercado de trabalho.
 
 O objetivo é estudar e melhorar ainda mais meus conhecimentos, além de poder ajudar desenvolvedores novos ou 
 experientes a aplicar esses conceitos em sua empresa, todo o projeto é de código aberto e qualquer um que quiser 
