@@ -27,6 +27,28 @@ contribuir será bem-vindo.
  - [`RabbitMQ`](https://www.rabbitmq.com) - RabbitMQ é um servidor de mensageria
  - [`jUnit5 e Mockito`](https://junit.org/junit5/) - Framework para execução de testes
 
+## Sobre o projeto
+
+Irei utilizar como referência todo o escopo do projeto [`music-store-api`](https://github.com/gbzarelli/music-store-api); O Music Store API trata-se de uma API para consultas e vendas de discos, sua base de dados é alimentada pela API do Spotify, na venda do disco é gerado um `cashback` de acordo com o dia da semana e o genêro de cada disco. A idéia do Mastering Music Store é a mesma, disponibilizar API's para consultas e vendas de discos e cadastro de usuários.
+
+### Desenvolvimento
+
+Vou elevar um pouco a complexidade do sistema inserindo uma autenticação por usuário no momento da realização de uma `Venda`, porém essa complexidade ficará na `API Gateway` que será desenvolvida utilizando a dependência do `Spring Cloud Netflix - Zuul`, todo o sistema será dividido em `micro-serviços`, a imagem a seguir mostra como será feita a divisão de contextos:
+
+<img src="./imagens/divisao_contexto.png"/>
+
+Atravéz dessa simples divisão, foi definido os seguintes micro-serviços:
+
+- Usuário
+- Venda
+- Discos
+- Descontos
+- Importação
+
+A `API Gateway` que é a porta de entrada que receberá as requisições, disponibilizará rotas apenas para os micro-serviços de `Usuário`, `Venda` e `Discos`
+
+...
+
 _______________________
 
 # PROJECT IN DEVELOPMENT
