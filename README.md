@@ -1,7 +1,7 @@
 # Mastering Music Store
 
 O projeto 'Mastering Music Store' será desenvolvido para validar meus conhecimento das várias tecnologias 
-utilizadas atualmente no mercado de trabalho.
+utilizadas atualmente no mercado de trabalho. Não pretendo entrar em detalhes ou prover conhecimentos para soluções definitivas, ou servir como base de uma 'implementação adequada' - muito longe disso, é apenas um projeto com uma grande gama de tecnologia abordada de forma simples.
 
 O objetivo é estudar e melhorar ainda mais meus conhecimentos, além de poder ajudar desenvolvedores novos ou 
 experientes a aplicar esses conceitos em sua empresa, todo o projeto é de código aberto e qualquer um que quiser 
@@ -37,13 +37,13 @@ Irei utilizar como referência todo o escopo do projeto [`music-store-api`](http
 
 ## Desenvolvimento
 
-Utilizando a idéia do [`music-store-api`](https://github.com/gbzarelli/music-store-api), irei desenvolver todo o sistema em API's separadas, vou elevar um pouco a complexidade do sistema inserindo uma autenticação por usuário no momento da realização de uma `Venda`, porém essa complexidade ficará na `API Gateway` que será desenvolvida utilizando a dependência do `Spring Cloud Netflix - Zuul`, em complemento ao Zuul, será implementado o `Spring Cloud Netflix - Eureka` como Service Discovery pois todo o sistema será dividido em `micro-serviços`.
+Utilizando a idéia do [`music-store-api`](https://github.com/gbzarelli/music-store-api), irei desenvolver todo o sistema em API's separadas, vou elevar um pouco a complexidade do sistema inserindo uma autenticação por usuário no momento da realização de uma `Venda`, porém essa complexidade ficará na `API Gateway` que será desenvolvida utilizando a dependência do `Spring Cloud Netflix - Zuul`, em complemento ao Zuul, será implementado o `Spring Cloud Netflix - Eureka` como [Service Discovery](https://microservices.io/patterns/server-side-discovery.html) para termos um melhor controle dos serviços em execução e permitir futuramente um `Load Balance`[(Ribbon)](https://spring.io/guides/gs/client-side-load-balancing/) adequado.
 
 A imagem a seguir mostra como será feita a divisão de contextos:
 
 <img src="./images/contexts.png"/>
 
-Atravéz dessa divisão, definimos os seguintes micro-serviços:
+Atravéz dessa divisão, definimos os seguintes serviços para nosso sistema:
 
 - Usuário
 - Venda
@@ -51,7 +51,9 @@ Atravéz dessa divisão, definimos os seguintes micro-serviços:
 - Descontos
 - Importação
 
-A porta de entrada `API Gateway` receberá as requisições e disponibilizará rotas apenas para os micro-serviços de `Usuário`, `Venda` e `Discos`.
+A porta de entrada `API Gateway` receberá as requisições e disponibilizará rotas apenas para os serviços de `Usuário`, `Venda` e `Discos`, os demais estarão protegidos pois são responsavéis apenas para trafegos internos na rede. 
+
+Ainda sobre o desenvolvimento irei utilizar uma outra API do `Spring Cloud` o [`Spring Cloud Config`](https://spring.io/projects/spring-cloud-config), o Spring Cloud Config fornece suporte ao servidor e ao cliente para externalizar configurações em um sistema distribuído.
 
 ...
 
