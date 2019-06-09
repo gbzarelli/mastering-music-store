@@ -16,7 +16,8 @@ contribuir será bem-vindo.
  - [`CircleCI`](https://circleci.com) - Plataforma de CI/CD
  - [`ELK`](https://www.elastic.co/elk-stack) - Realizar monitoramento de log, O Stack Elastic (ELK) é o conjunto formado pelas ferramentas Elasticsearch, Kibana, Logstash
  - [`Spring Cloud Netflix (Zuul, Eureka)`](https://spring.io/projects/spring-cloud-netflix) - O Spring Cloud Netflix fornece integrações Netflix OSS para aplicativos Spring Boot 
- - [`Spring boot`](https://spring.io) - Framework base para a API
+  - [`Spring Cloud Config`](https://spring.io/projects/spring-cloud-config) - O Spring Cloud Config fornece suporte ao servidor e ao cliente para configuração externalizada em um sistema distribuído.
+ - [`Spring Boot`](https://spring.io) - O Spring Boot facilita a criação de aplicativos baseados em Spring autônomos e de produção que você pode "executar".
  - [`Flyway`](https://flywaydb.org) - Controle de versão e migração para banco de dados
  - [`MySQL`](https://www.mysql.com) - Banco de dados SQL
  - [`MongoDB`](https://www.mongodb.com) - Banco de dados NoSQL
@@ -26,6 +27,7 @@ contribuir será bem-vindo.
  - [`Docker`](https://www.docker.com) - Executa e gerencia aplicações dentro de invólucros chamados containers
  - [`RabbitMQ`](https://www.rabbitmq.com) - RabbitMQ é um servidor de mensageria
  - [`jUnit5 e Mockito`](https://junit.org/junit5/) - Framework para execução de testes
+ - [`Kotlin`](https://kotlinlang.org) - Kotlin é uma Linguagem de programação multiplataforma que compila para a Máquina virtual Java
 
 ## Sobre o projeto
 
@@ -37,7 +39,7 @@ Irei utilizar como referência todo o escopo do projeto [`music-store-api`](http
 
 ## Desenvolvimento
 
-Utilizando a idéia do [`music-store-api`](https://github.com/gbzarelli/music-store-api), irei desenvolver todo o sistema em API's separadas, vou elevar um pouco a complexidade do sistema inserindo uma autenticação por usuário no momento da realização de uma `Venda`, porém essa complexidade ficará na `API Gateway` que será desenvolvida utilizando a dependência do `Spring Cloud Netflix - Zuul`, em complemento ao Zuul, será implementado o `Spring Cloud Netflix - Eureka` como [Service Discovery](https://microservices.io/patterns/server-side-discovery.html) para termos um melhor controle dos serviços em execução e permitir futuramente um `Load Balance`[(Ribbon)](https://spring.io/guides/gs/client-side-load-balancing/) adequado.
+Utilizando a idéia do [`music-store-api`](https://github.com/gbzarelli/music-store-api), irei desenvolver todo o sistema em API's separadas - tentando abordar um pouco o conceito de microservices, vou elevar um pouco a complexidade do sistema inserindo uma autenticação por usuário no momento da realização de uma `Venda`, porém essa complexidade ficará na `API Gateway` que será desenvolvida utilizando a dependência do `Spring Cloud Netflix - Zuul`, em complemento ao Zuul, também será inserido no escopo do projeto o `Spring Cloud Netflix - Eureka` como [Service Discovery](https://microservices.io/patterns/server-side-discovery.html) para termos um melhor controle dos serviços em execução e permitir futuramente um `Load Balance`[(Ribbon)](https://spring.io/guides/gs/client-side-load-balancing/) adequado, ainda na utilização do Spring Cloud irei utilizar o [`Spring Cloud Config`](https://spring.io/projects/spring-cloud-config), que em um sistema distribuído será responsável em fornecer suporte para externalizar configurações.
 
 A imagem a seguir mostra como será feita a divisão de contextos:
 
@@ -45,15 +47,13 @@ A imagem a seguir mostra como será feita a divisão de contextos:
 
 Atravéz dessa divisão, definimos os seguintes serviços para nosso sistema:
 
-- Usuário
-- Venda
-- Discos
-- Descontos
-- Importação
+- `Usuário` - [mms-user-api](./mms-user-api)
+- `Venda` - [mms-sale-api](./mms-sale-api)
+- `Discos` - [mms-discs-api](./mms-discs-api)
+- `Descontos` - [mms-discount-api](./mms-discount-api)
+- `Importação` - [mms-discs-import-api](./mms-discs-import-api)
 
-A porta de entrada `API Gateway` receberá as requisições e disponibilizará rotas apenas para os serviços de `Usuário`, `Venda` e `Discos`, os demais estarão protegidos pois são responsavéis apenas para trafegos internos na rede. 
-
-Ainda sobre o desenvolvimento irei utilizar uma outra API do `Spring Cloud` o [`Spring Cloud Config`](https://spring.io/projects/spring-cloud-config), o Spring Cloud Config fornece suporte ao servidor e ao cliente para externalizar configurações em um sistema distribuído.
+A porta de entrada `API Gateway` receberá as requisições e disponibilizará rotas apenas para os serviços de `Usuário`, `Venda` e `Discos`, os demais estarão protegidos pois serão responsavéis apenas para trafegos de dados entre os serviços.
 
 ...
 
