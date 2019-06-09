@@ -39,7 +39,7 @@ Irei utilizar como referência todo o escopo do projeto [`music-store-api`](http
 
 ## Desenvolvimento
 
-Utilizando a idéia do [`music-store-api`](https://github.com/gbzarelli/music-store-api), irei desenvolver todo o sistema em API's separadas - tentando abordar um pouco o conceito de microservices, vou elevar um pouco a complexidade do sistema inserindo uma autenticação por usuário no momento da realização de uma `Venda`, porém essa complexidade ficará na `API Gateway` que será desenvolvida utilizando a dependência do `Spring Cloud Netflix - Zuul`, em complemento ao Zuul, também será inserido no escopo do projeto o `Spring Cloud Netflix - Eureka` como [Service Discovery](https://microservices.io/patterns/server-side-discovery.html) para termos um melhor controle dos serviços em execução e permitir futuramente um `Load Balance`[(Ribbon)](https://spring.io/guides/gs/client-side-load-balancing/) adequado, ainda na utilização do Spring Cloud irei utilizar o [`Spring Cloud Config`](https://spring.io/projects/spring-cloud-config), que em um sistema distribuído será responsável em fornecer suporte para externalizar configurações.
+Utilizando a idéia do [`music-store-api`](https://github.com/gbzarelli/music-store-api), irei desenvolver todo o sistema em API's separadas - tentando abordar um pouco o conceito de microservices e outras tecnologias. Para gerenciamento e controle dos microserviços será adicionado na primeira camada do projeto uma `API Gateway` que será desenvolvida utilizando a dependência do `Spring Cloud Netflix - Zuul`, em complemento com o Zuul, será inserido o `Spring Cloud Netflix - Eureka` como [Service Discovery](https://microservices.io/patterns/server-side-discovery.html) para termos um melhor controle dos serviços em execução e permitir futuramente um `Load Balance`[(Ribbon)](https://spring.io/guides/gs/client-side-load-balancing/) adequado, ainda na utilização do `Spring Cloud` irei implementar o [`Spring Cloud Config`](https://spring.io/projects/spring-cloud-config), que em um sistema distribuído será responsável em fornecer suporte para externalizar configurações.
 
 A imagem a seguir mostra como será feita a divisão de contextos:
 
@@ -53,7 +53,7 @@ Atravéz dessa divisão, definimos os seguintes serviços para nosso sistema:
 - `Descontos` - [mms-discount-api](./mms-discount-api)
 - `Importação` - [mms-discs-import-api](./mms-discs-import-api)
 
-A porta de entrada `API Gateway` receberá as requisições e disponibilizará rotas apenas para os serviços de `Usuário`, `Venda` e `Discos`, os demais estarão protegidos pois serão responsavéis apenas para trafegos de dados entre os serviços.
+A porta de entrada `API Gateway` receberá as requisições e disponibilizará rotas apenas para os serviços de `Usuário`, `Venda` e `Discos`, os demais estarão protegidos pois serão responsavéis apenas para trafegos de dados entre os demais.
 
 ...
 
