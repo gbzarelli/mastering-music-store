@@ -1,6 +1,6 @@
 eureka:
   instance:
-    hostname: ${DISCOVERY_URL:localhost}
+    hostname: localhost
   client:
     registerWithEureka: true
     fetchRegistry: false
