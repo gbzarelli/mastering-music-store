@@ -1,18 +1,1 @@
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    registerWithEureka: true
-    serviceUrl:
-      defaultZone: http://localhost:8081/eureka/
-
-# Zuul config
-zuul:
-  prefix: /api
-  routes:
-    articles:
-      path: /articles/**
-      serviceId: article-service
-    authors:
-      path: /authors/**
-      serviceId: author-service
+#EMPTY
