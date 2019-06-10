@@ -2,7 +2,17 @@ eureka:
   instance:
     hostname: mms-eureka-server
   client:
+    registerWithEureka: true
     serviceUrl:
-      defaultZone: ${DISCOVERY_URL:http://localhost:8081/eureka/}
+      defaultZone: ${DISCOVERY_URL:http://localhost:8081}/eureka/
 
-
+# Zuul config
+zuul:
+  prefix: /api
+  routes:
+    articles:
+      path: /articles/**
+      serviceId: article-service
+    authors:
+      path: /authors/**
+      serviceId: author-service
