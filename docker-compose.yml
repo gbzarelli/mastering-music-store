@@ -16,6 +16,17 @@ services:
     depends_on: 
       - mms-config-server
     ports:
+      - 8081:8081
+    networks: 
+      - mms-network
+
+  mms-gateway-api:
+    container_name: 'mms-gateway-api'
+    build: ./mms-gateway-api/
+    depends_on: 
+      - mms-config-server
+      - mms-eureka-server
+    ports:
       - 8080:8080
     networks: 
       - mms-network

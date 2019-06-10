@@ -1,0 +1,8 @@
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 3000

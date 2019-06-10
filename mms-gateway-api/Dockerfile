@@ -2,8 +2,10 @@ FROM openjdk:8-jdk-alpine
 MAINTAINER Guilherme Biff Zarelli <gbzarelli@helpdev.com.br>
 
 # Set ENV variables
-ENV PORT=8081
-ENV DISCOVERY_URL="http://mms-eureka-server:8081"
+ENV PORT=8080
+
+ENV DISCOVERY_ADDRESS="mms-eureka-server:8081"
+ENV DISCOVERY_URL="http://${DISCOVERY_ADDRESS}"
 ENV CONFIG_SERVER_ADDRESS="mms-config-server:9090"
 ENV CONFIG_SERVER_URL="http://${CONFIG_SERVER_ADDRESS}"
 

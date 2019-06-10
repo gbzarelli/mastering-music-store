@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mms-gateway-api
+  cloud:
+    config:
+      enabled: false

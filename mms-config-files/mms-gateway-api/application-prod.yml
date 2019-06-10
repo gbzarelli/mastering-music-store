@@ -1,0 +1,8 @@
+eureka:
+  instance:
+    hostname: mms-eureka-server
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_URL:http://localhost:8081/eureka/}
+
+
