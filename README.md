@@ -54,8 +54,13 @@ Atravéz dessa divisão, definimos os seguintes serviços para nosso sistema:
 - `Importação` - [mms-discs-import-api](./mms-discs-import-api)
 
 A porta de entrada `API Gateway` receberá as requisições e disponibilizará rotas apenas para os serviços de `Usuário`, `Venda` e `Discos`, os demais estarão protegidos pois serão responsavéis apenas para trafegos de dados entre os demais.
+O serviço de `Descontos` fornecera sob demanda dados de desconto para determinados discos de acordo com seus gêneros, para finalizar possuimos o serviço de `Importação` que obterá dados do `Spotify` e publicará em uma fila para ser cadastrados, esse serviço de importação será desenvolvido com o conceito de ELT (Extração, Transforção e Carga).
 
-...
+Para comunicação entre os serviços, troca de mensagens assincronas e Log, iremos utilizar o `RabbitMQ`, para os `Logs` será implementado um `stack` com o `ELK` de acordo com o seguinte fork: [EnterpriseApplicationLOG](https://github.com/gbzarelli/enterprise-application-log)
+
+Atravéz desses dados foi definido a seguinte arquitetura base para o `mastering-music-store`
+
+<img src="./images/architecture.png"/>
 
 _______________________
 
